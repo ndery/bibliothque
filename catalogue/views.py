@@ -10,8 +10,10 @@ def index(request):
 
 @login_required
 def book_list(request):
+      
   user = request.user
   books=Book.objects.all
+  
   return render(request, 'catalog.html', {'books':books})
 
 
