@@ -25,13 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z^t@qd=u&s)%bp2=x5@*3zmkl22y!0k*h-ouv6fod&ju4g#p#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('bibliothque') == 'PRODUCTION':
+DEBUG=True
 
-    DEBUG = False
-else:
-    DEBUG=True
-
-ALLOWED_HOSTS = ['locallibrary.herokuapp.com']
+ALLOWED_HOSTS = ['locallibrary195.herokuapp.com']
 
 
 # Application definition
@@ -133,14 +129,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR/"locallibrary/static"]
 
 
-if os.environ.get('bibliothque')=='PRODUCTION':
-    PROJECT_ROOT=os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT=os.path.join(PROJECT_ROOT, 'staticfiles')
-    STATICFILES_DIRS=(os.path.join(PROJECT_ROOT,'static'),)
 
-    STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
-    db_from_env=dj_database_url.config(con_max_age=500)
-    DATABASES['default'].update(db_from_env)
+PROJECT_ROOT=os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT=os.path.join(PROJECT_ROOT, 'staticfiles')
+STATICFILES_DIRS=(os.path.join(PROJECT_ROOT,'static'),)
+
+STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
+db_from_env=dj_database_url.config(con_max_age=500)
+DATABASES['default'].update(db_from_env)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
