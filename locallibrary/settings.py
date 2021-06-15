@@ -135,7 +135,7 @@ STATIC_ROOT=os.path.join(PROJECT_ROOT, 'staticfiles')
 STATICFILES_DIRS=(os.path.join(PROJECT_ROOT,'static'),)
 
 STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
-db_from_env=dj_database_url.config(con_max_age=500)
+db_from_env=dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
