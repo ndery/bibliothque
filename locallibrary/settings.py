@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z^t@qd=u&s)%bp2=x5@*3zmkl22y!0k*h-ouv6fod&ju4g#p#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=True
+DEBUG=False
 
-ALLOWED_HOSTS = ['locallibrary195.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1:5432']
 
 
 # Application definition
@@ -43,16 +43,17 @@ INSTALLED_APPS = [
     'catalogue',
     'account',
 ]
-
+#'whitenoise.middleware.WhiteNoiseMiddleware',
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    
 ]
 
 ROOT_URLCONF = 'locallibrary.urls'
@@ -73,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'locallibrary.wsgi.application'
+WSGI_APPLICATION = ['locallibrary190.herokuapp.com']
 
 
 # Database
@@ -134,9 +135,9 @@ PROJECT_ROOT=os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT=os.path.join(PROJECT_ROOT, 'staticfiles')
 STATICFILES_DIRS=(os.path.join(PROJECT_ROOT,'static'),)
 
-STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
-db_from_env=dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
+prod_db=dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
